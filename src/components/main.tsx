@@ -95,6 +95,11 @@ const Main: React.FC<{
       <MainComponent>
         <div>
           <List>
+            {sandboxes.length === 0 && (
+              <Text block weight="400" as="h2">
+                No sandboxes were found.
+              </Text>
+            )}
             {sandboxes.map((a) => {
               const url = getUrlSandbox(a.objectID)
 
