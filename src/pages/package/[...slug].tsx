@@ -44,16 +44,17 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   // No data
   if (
-    !dependencyData ||
-    !dependencyData.sandboxes ||
-    dependencyData?.sandboxes.length === 0
+    !packageInfo.info &&
+    (!dependencyData ||
+      !dependencyData.sandboxes ||
+      dependencyData?.sandboxes.length === 0)
   ) {
     return { notFound: true, props: { packageName } }
   }
 
   return {
     props: {
-      sandboxes: dependencyData?.sandboxes ?? null,
+      sandboxes: dependencyData?.sandboxes ?? [],
       packageName,
       hasMoreToLoad: dependencyData?.hasMoreToLoad ?? null,
       packageInfo
